@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 
 export function Form() {
-  const { SocketRef, assets, setRoomId } = useGlobalContext();
+  const { SocketRef, assets, setRoomId, canvasSize } = useGlobalContext();
   const { arrowImg } = assets;
 
   const [name, setName] = useState("John");
@@ -17,15 +17,17 @@ export function Form() {
 
     const newRoomId = crypto.randomUUID();
     setRoomId(newRoomId);
-    socket.emit("gameStart", { roomId: newRoomId, name, maxPlayers });
+    socket.emit("gameStart", {
+      roomId: newRoomId,
+      name,
+      maxPlayers,
+      canvasSize,
+    });
   };
 
   return (
     <form
-      className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen max-w-96 aspect-square
-            md:shadow-[0_10px_40px_-10px_black] rounded-lg py-2 px-10
-            flex flex-col justify-evenly items-center
-        "
+      className="h-full flex flex-col justify-evenly items-center"
       onSubmit={submitForm}
     >
       <h1 className="text-2xl font-bold">Space Invaders</h1>
@@ -62,7 +64,7 @@ export function Form() {
               "
               onClick={() => setMaxPlayers((prev) => prev + 1)}
             >
-              <Image src={arrowImg!} fill alt="arrow button image" />
+              <Image src={arrowImg!.src} fill alt="arrow button image" />
             </button>
             <button
               type="button"
@@ -73,7 +75,7 @@ export function Form() {
                 maxPlayers > 1 && setMaxPlayers((prev) => prev - 1)
               }
             >
-              <Image src={arrowImg!} fill alt="arrow button image" />
+              <Image src={arrowImg!.src} fill alt="arrow button image" />
             </button>
           </div>
         </div>

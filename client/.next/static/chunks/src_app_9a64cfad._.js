@@ -91,7 +91,9 @@ function AssetsLoader() {
             })["AssetsLoader.useEffect"];
         }
     }["AssetsLoader.useEffect"], []);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {}, void 0, false, {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        hidden: true
+    }, void 0, false, {
         fileName: "[project]/src/app/components/AssetsLoader/index.tsx",
         lineNumber: 16,
         columnNumber: 10
@@ -146,7 +148,7 @@ function Form() {
         });
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-        className: "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen max-w-96 aspect-square   md:shadow-[0_10px_40px_-10px_black] rounded-lg py-2 px-10   flex flex-col justify-evenly items-center   ",
+        className: "h-full flex flex-col justify-evenly items-center",
         onSubmit: submitForm,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -154,7 +156,7 @@ function Form() {
                 children: "Space Invaders"
             }, void 0, false, {
                 fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                lineNumber: 31,
+                lineNumber: 28,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -168,7 +170,7 @@ function Form() {
                                 children: "Name"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                lineNumber: 34,
+                                lineNumber: 31,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -181,13 +183,13 @@ function Form() {
                                 onChange: (e)=>setName(e.target.value)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                lineNumber: 35,
+                                lineNumber: 32,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                        lineNumber: 33,
+                        lineNumber: 30,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -201,7 +203,7 @@ function Form() {
                                         children: "Max. Players"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                        lineNumber: 47,
+                                        lineNumber: 44,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -213,13 +215,13 @@ function Form() {
                                         onChange: (e)=>setMaxPlayers(parseInt(e.target.value))
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                        lineNumber: 48,
+                                        lineNumber: 45,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                lineNumber: 46,
+                                lineNumber: 43,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -234,12 +236,12 @@ function Form() {
                                             alt: "arrow button image"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                            lineNumber: 65,
+                                            lineNumber: 62,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                        lineNumber: 58,
+                                        lineNumber: 55,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -252,30 +254,30 @@ function Form() {
                                             alt: "arrow button image"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                            lineNumber: 76,
+                                            lineNumber: 73,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                        lineNumber: 67,
+                                        lineNumber: 64,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                                lineNumber: 57,
+                                lineNumber: 54,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                        lineNumber: 45,
+                        lineNumber: 42,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                lineNumber: 32,
+                lineNumber: 29,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -287,7 +289,7 @@ function Form() {
                         children: "Start"
                     }, void 0, false, {
                         fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                        lineNumber: 82,
+                        lineNumber: 79,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -296,13 +298,13 @@ function Form() {
                         children: "Join"
                     }, void 0, false, {
                         fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                        lineNumber: 85,
+                        lineNumber: 82,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/components/Home/components/Form/index.tsx",
-                lineNumber: 81,
+                lineNumber: 78,
                 columnNumber: 7
             }, this)
         ]
@@ -364,25 +366,61 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$Context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/Context.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Home$2f$components$2f$Form$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/components/Home/components/Form/index.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Home$2f$components$2f$Loading$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/app/components/Home/components/Loading/index.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 function Home() {
     _s();
-    const { isAllAssetsLoaded } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$Context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGlobalContext"])();
-    return !isAllAssetsLoaded ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Home$2f$components$2f$Loading$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+    const { isAllAssetsLoaded, isGameStarted } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$Context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGlobalContext"])();
+    const [isRender, setIsRender] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const timeout = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Home.useEffect": ()=>{
+            if (!isGameStarted) {
+                setIsRender(true);
+                timeout.current = null;
+            }
+            if (isGameStarted) {
+                timeout.current = setTimeout({
+                    "Home.useEffect": ()=>{
+                        setIsRender(false);
+                    }
+                }["Home.useEffect"], 1000);
+            }
+            return ({
+                "Home.useEffect": ()=>{
+                    if (timeout.current) clearInterval(timeout.current);
+                }
+            })["Home.useEffect"];
+        }
+    }["Home.useEffect"], [
+        isGameStarted
+    ]);
+    return isRender && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: `fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen max-w-96 aspect-square
+          md:shadow-[0_10px_40px_-10px_black] rounded-lg py-2 px-10 transformation-transform duration-1000
+          ${isGameStarted ? "opacity-0" : "opacity-100"}
+        `,
+        children: !isAllAssetsLoaded ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Home$2f$components$2f$Loading$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
+            fileName: "[project]/src/app/components/Home/index.tsx",
+            lineNumber: 37,
+            columnNumber: 31
+        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Home$2f$components$2f$Form$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Form"], {}, void 0, false, {
+            fileName: "[project]/src/app/components/Home/index.tsx",
+            lineNumber: 37,
+            columnNumber: 45
+        }, this)
+    }, void 0, false, {
         fileName: "[project]/src/app/components/Home/index.tsx",
-        lineNumber: 8,
-        columnNumber: 31
-    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$Home$2f$components$2f$Form$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Form"], {}, void 0, false, {
-        fileName: "[project]/src/app/components/Home/index.tsx",
-        lineNumber: 8,
-        columnNumber: 45
+        lineNumber: 31,
+        columnNumber: 7
     }, this);
 }
-_s(Home, "1jWLFLJy4AIQxwtkhI9fKiuIecM=", false, function() {
+_s(Home, "FMlU7dX6Mejg5ZmddyaE9kfBjjg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$Context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGlobalContext"]
     ];
@@ -416,7 +454,10 @@ var _s = __turbopack_context__.k.signature();
 ;
 function Socket() {
     _s();
-    const { SocketRef } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$Context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGlobalContext"])();
+    const { SocketRef, isGameStarted, setIsGameStarted } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$Context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGlobalContext"])();
+    console.log({
+        isGameStarted
+    });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Socket.useEffect": ()=>{
             const socket = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$socket$2e$io$2d$client$2f$build$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["io"])(("TURBOPACK compile-time value", "http://localhost:4000"), {
@@ -430,6 +471,11 @@ function Socket() {
             socket.on("disconnect", {
                 "Socket.useEffect": ()=>console.log("❌ Socket Disconnected")
             }["Socket.useEffect"]);
+            socket.on("gameState", {
+                "Socket.useEffect": (data)=>{
+                    if (!isGameStarted) setIsGameStarted(true);
+                }
+            }["Socket.useEffect"]);
             SocketRef.current = socket;
         }
     }["Socket.useEffect"], []);
@@ -437,11 +483,11 @@ function Socket() {
         hidden: true
     }, void 0, false, {
         fileName: "[project]/src/app/components/Socket/index.tsx",
-        lineNumber: 19,
+        lineNumber: 23,
         columnNumber: 10
     }, this);
 }
-_s(Socket, "cgx8VgkvM4VhakS8rLeZczi9mSM=", false, function() {
+_s(Socket, "dR18oWwTwP3kMYHmn7JfYOkkdag=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$Context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGlobalContext"]
     ];

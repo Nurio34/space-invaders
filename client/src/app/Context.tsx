@@ -11,16 +11,19 @@ import {
   useState,
 } from "react";
 import { Socket } from "socket.io-client";
-import { ServerToClientEvents } from "./types/game/server";
+import { RoomType, ServerToClientEvents } from "./types/game/server";
 import { ClientToServerEvents } from "./types/game/client";
 
 interface AssetsType {
-  arrowImg: string | null;
+  arrowImg: { el: HTMLImageElement; src: string } | null;
+  shipImg: { el: HTMLImageElement; src: string } | null;
 }
 
 export type SocketType = Socket<ServerToClientEvents, ClientToServerEvents>;
 
 export type RoomIdType = string | null;
+
+export type CanvasSizeType = { width: number; height: number };
 
 interface ContextType {
   assets: AssetsType;
@@ -31,6 +34,14 @@ interface ContextType {
   setRoomId: Dispatch<SetStateAction<RoomIdType>>;
   isGameStarted: boolean;
   setIsGameStarted: Dispatch<SetStateAction<boolean>>;
+  CanvasRef: RefObject<HTMLCanvasElement | null>;
+  CtxRef: RefObject<CanvasRenderingContext2D | null>;
+  canvasSize: CanvasSizeType;
+  setCanvasSize: Dispatch<SetStateAction<CanvasSizeType>>;
+  socketId: string | undefined;
+  setSocketId: Dispatch<SetStateAction<string | undefined>>;
+  gameState: RoomType;
+  setGameState: Dispatch<SetStateAction<RoomType>>;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -38,6 +49,7 @@ const Context = createContext<ContextType | undefined>(undefined);
 export const Provider = ({ children }: { children: ReactNode }) => {
   const [assets, setAssets] = useState<AssetsType>({
     arrowImg: null,
+    shipImg: null,
   });
   const isAllAssetsLoaded = Object.values(assets).every((asset) => asset);
 
@@ -46,6 +58,17 @@ export const Provider = ({ children }: { children: ReactNode }) => {
   const [roomId, setRoomId] = useState<RoomIdType>(null);
 
   const [isGameStarted, setIsGameStarted] = useState(false);
+
+  const CanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const CtxRef = useRef<CanvasRenderingContext2D | null>(null);
+  const [canvasSize, setCanvasSize] = useState<CanvasSizeType>({
+    width: 0,
+    height: 0,
+  });
+
+  const [socketId, setSocketId] = useState<string | undefined>(undefined);
+
+  const [gameState, setGameState] = useState<RoomType>({} as RoomType);
 
   return (
     <Context.Provider
@@ -58,6 +81,14 @@ export const Provider = ({ children }: { children: ReactNode }) => {
         setRoomId,
         isGameStarted,
         setIsGameStarted,
+        CanvasRef,
+        CtxRef,
+        canvasSize,
+        setCanvasSize,
+        socketId,
+        setSocketId,
+        gameState,
+        setGameState,
       }}
     >
       {children}

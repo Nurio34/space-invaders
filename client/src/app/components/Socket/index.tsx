@@ -1,16 +1,19 @@
-import { useGlobalContext } from "@/app/Context";
+import { SocketType, useGlobalContext } from "@/app/Context";
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 
-function Socket() {
-  const { SocketRef } = useGlobalContext();
+export function SocketInitilizer() {
+  const { SocketRef, setSocketId } = useGlobalContext();
 
   useEffect(() => {
-    const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
+    const socket: SocketType = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
       transports: ["websocket"], // Avoid polling fallback
     });
 
-    socket.on("connect", () => console.log("🔌 Socket Connected:", socket?.id));
+    socket.on("connect", () => {
+      console.log("🔌 Socket Connected:", socket?.id);
+      setSocketId(socket?.id);
+    });
     socket.on("disconnect", () => console.log("❌ Socket Disconnected"));
 
     SocketRef.current = socket;
@@ -18,5 +21,3 @@ function Socket() {
 
   return <div hidden />;
 }
-
-export default Socket;

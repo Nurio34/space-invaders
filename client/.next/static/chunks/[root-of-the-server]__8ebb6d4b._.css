@@ -100,6 +100,7 @@
       --tw-translate-y: 0;
       --tw-translate-z: 0;
       --tw-font-weight: initial;
+      --tw-duration: initial;
       --tw-scale-x: 1;
       --tw-scale-y: 1;
       --tw-scale-z: 1;
@@ -784,6 +785,10 @@
     left: 50%;
   }
 
+  .z-10 {
+    z-index: 10;
+  }
+
   .flex {
     display: flex;
   }
@@ -794,6 +799,10 @@
 
   .aspect-square {
     aspect-ratio: 1;
+  }
+
+  .h-full {
+    height: 100%;
   }
 
   .h-screen {
@@ -830,8 +839,16 @@
     rotate: 180deg;
   }
 
+  .cursor-none {
+    cursor: none;
+  }
+
   .cursor-pointer {
     cursor: pointer;
+  }
+
+  .resize {
+    resize: both;
   }
 
   .flex-col {
@@ -895,10 +912,23 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .opacity-0 {
+    opacity: 0;
+  }
+
+  .opacity-100 {
+    opacity: 1;
+  }
+
   .transition-transform {
     transition-property: transform, translate, scale, rotate;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+
+  .duration-1000 {
+    --tw-duration: 1s;
+    transition-duration: 1s;
   }
 
   .btn-primary {
@@ -938,10 +968,6 @@
 input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
 }
 
 @keyframes radio {
@@ -1014,6 +1040,11 @@ input[type="number"] {
 }
 
 @property --tw-font-weight {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-duration {
   syntax: "*";
   inherits: false
 }
