@@ -1,7 +1,7 @@
 "use client";
 
 import { useGlobalContext } from "@/app/Context";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState, useRef } from "react";
 
 export function Canvas() {
   const {
@@ -20,8 +20,11 @@ export function Canvas() {
 
   const { shipImg } = assets;
 
+  const [isShooting, setIsShooting] = useState(false);
+  const shootingInterval = useRef<NodeJS.Timeout | null>(null);
+
   const updateCtx = useCallback(() => {
-    if (!CanvasRef.current || !isAllAssetsLoaded) return;
+    if (!CanvasRef.current || CtxRef.current || !isAllAssetsLoaded) return;
 
     const canvas = CanvasRef.current;
     canvas.width = window.innerWidth;
@@ -38,20 +41,21 @@ export function Canvas() {
     updateCtx();
 
     window.addEventListener("resize", updateCtx);
-    return () => window.removeEventListener("resize", updateCtx); // clean up
+
+    return () => window.removeEventListener("resize", updateCtx);
   }, [updateCtx]);
 
   useEffect(() => {
     const ctx = CtxRef.current;
 
     if (!socketId || !ctx || !gameState.id) return;
-    console.log(gameState);
 
     const { width, height } = canvasSize;
     ctx.clearRect(0, 0, width, height);
 
     //! *** draw bullets ***
     const { bullets } = gameState;
+
     bullets.forEach((bullet) => {
       const { x, y, width, height } = bullet;
       ctx.fillStyle = "red";
@@ -63,7 +67,6 @@ export function Canvas() {
     const { players } = gameState;
     const player = players[socketId];
     const { size, x, y } = player;
-    console.log(size);
 
     ctx.fillStyle = "black";
     if (shipImg) {
@@ -90,20 +93,35 @@ export function Canvas() {
   }, [isGameStarted, roomId, socketId]);
 
   useEffect(() => {
-    if (!isGameStarted || !roomId || !socketId) return;
+    const handleMouseDown = (e: MouseEvent) => setIsShooting(true);
+    window.addEventListener("mousedown", handleMouseDown);
 
-    const handleClick = (e: MouseEvent) => {
-      const socket = SocketRef.current;
-      if (!socket) return;
+    const handleMouseUp = (e: MouseEvent) => setIsShooting(false);
 
-      socket.emit("shot", { roomId, socketId });
-    };
-    window.addEventListener("mousedown", handleClick);
+    window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
-      window.removeEventListener("mousedown", handleClick);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isGameStarted, roomId, socketId]);
+
+  useEffect(() => {
+    if (!isShooting && shootingInterval.current) {
+      shootingInterval.current = null;
+      return;
+    } else {
+      shootingInterval.current = setInterval(() => {
+        const socket = SocketRef.current;
+        if (!socket || !roomId || !socketId) return;
+        socket.emit("shot", { roomId, socketId });
+      }, 1000 / 18);
+    }
+
+    return () => {
+      if (shootingInterval.current) clearInterval(shootingInterval.current);
+    };
+  }, [isShooting]);
 
   return (
     <canvas

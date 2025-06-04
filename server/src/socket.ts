@@ -12,22 +12,13 @@ import { handlePlayerSize } from "./utils/handlePlayerSize";
 
 const rooms: Record<string, RoomType> = {};
 
-let interval: NodeJS.Timeout | null = null;
+const gameLoopIntervals: Record<string, NodeJS.Timeout> = {};
 
 export const socketSetup = (
   io: Server<ClientToServerEvents, ServerToClientEvents>
 ) => {
   io.on("connection", (socket) => {
     console.log(`Player connected with id: ${socket.id}`);
-
-    // socket.on("resetCanvas", ({ width, height }) => {
-    //   for (const roomId in rooms) {
-    //     if (rooms[roomId].players[socket.id]) {
-    //       rooms[roomId].canvasSize = { width, height };
-    //       break;
-    //     }
-    //   }
-    // });
 
     socket.on("resetCanvas", ({ roomId, socketId, width, height }) => {
       const player = detectPlayer(rooms, roomId, socketId);
@@ -75,7 +66,7 @@ export const socketSetup = (
       const player = detectPlayer(rooms, roomId, socketId);
 
       const { size, x, y } = player;
-      const bulletWidth = size / 6;
+      const bulletWidth = size / 8;
       const bulletHeight = bulletWidth * 2;
 
       const newBullet = new Bullet(
@@ -84,7 +75,7 @@ export const socketSetup = (
         bulletWidth,
         bulletHeight,
         x + size / 2 - bulletWidth / 2,
-        y + size - bulletHeight
+        y
       );
 
       const room = rooms[roomId];
@@ -92,13 +83,18 @@ export const socketSetup = (
     });
 
     socket.on("disconnect", () => {
+      //! *** if a player leave the room, delete the player from room ***
       for (const roomId in rooms) {
         const room = rooms[roomId];
         if (room.players[socket.id]) {
           delete room.players[socket.id];
+          //! *** and check if any playerin the room. If not, delete the room from rooms ***
           if (Object.keys(room.players).length === 0) {
             delete rooms[roomId];
-          } else {
+            console.log(`Room "${roomId}" deleted because it has no players.`);
+          }
+          //! *******************************************************************************
+          else {
             io.to(roomId).emit("gameState", room);
           }
         }
@@ -112,17 +108,28 @@ function gameLoop(
   roomId: string,
   socketId: string
 ) {
-  const room = rooms[roomId];
-  interval = setInterval(() => {
-    if (!room) return;
+  if (gameLoopIntervals[roomId]) return; // prevent double-start
 
+  gameLoopIntervals[roomId] = setInterval(() => {
+    const room = rooms[roomId];
+
+    //! *** if all players left the room, stop the gameLoop ***
+    if (!room) {
+      clearInterval(gameLoopIntervals[roomId]);
+      delete gameLoopIntervals[roomId];
+      return;
+    }
+    //! ********************************************************
+
+    //! *** handle bullets ***
     room.bullets = room.bullets.filter((bullet) => {
       bullet.move();
       return bullet.y > bullet.height * -1;
     });
+    //! **********************
 
-    console.log(room.bullets);
-
-    io.to(roomId).emit("gameState", rooms[roomId]);
+    //? *** Broadcast the game ***
+    io.to(roomId).emit("gameState", room);
+    //? *************************
   }, 1000 / 60);
 }
