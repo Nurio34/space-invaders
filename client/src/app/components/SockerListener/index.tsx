@@ -10,6 +10,8 @@ export function SockerListener() {
     setIsGameStarted,
     canvasSize,
     setGameState,
+    roomId,
+    socketId,
   } = useGlobalContext();
 
   useEffect(() => {
@@ -26,12 +28,12 @@ export function SockerListener() {
   useEffect(() => {
     const socket = SocketRef.current;
 
-    if (!socket) return;
+    if (!socket || !roomId || !socketId) return;
 
     const { width, height } = canvasSize;
 
-    socket.emit("resetCanvas", { width, height });
-  }, [canvasSize]);
+    socket.emit("resetCanvas", { roomId, socketId, width, height });
+  }, [canvasSize, roomId, socketId]);
 
   return <div hidden />;
 }

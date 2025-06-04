@@ -1,9 +1,15 @@
 import { CanvasSizeType } from "@/app/Context";
 
 export interface ClientToServerEvents {
-  resetCanvas: (action: { width: number; height: number }) => void;
+  resetCanvas: (action: {
+    roomId: string;
+    socketId: string;
+    width: number;
+    height: number;
+  }) => void;
   gameStart: (action: {
     roomId: string;
+    socketId: string;
     name: string;
     maxPlayers: number;
     canvasSize: CanvasSizeType;

@@ -3,7 +3,8 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 
 export function Form() {
-  const { SocketRef, assets, setRoomId, canvasSize } = useGlobalContext();
+  const { SocketRef, assets, setRoomId, canvasSize, socketId } =
+    useGlobalContext();
   const { arrowImg } = assets;
 
   const [name, setName] = useState("John");
@@ -13,12 +14,13 @@ export function Form() {
     e.preventDefault();
     const socket = SocketRef.current;
 
-    if (!socket) return console.error("Socket Connection error");
+    if (!socket || !socketId) return;
 
     const newRoomId = crypto.randomUUID();
     setRoomId(newRoomId);
     socket.emit("gameStart", {
       roomId: newRoomId,
+      socketId,
       name,
       maxPlayers,
       canvasSize,

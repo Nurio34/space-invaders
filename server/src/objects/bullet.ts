@@ -5,6 +5,7 @@ export class Bullet {
   height: number;
   x: number;
   y: number;
+  vy: number;
   score = 0;
 
   constructor(
@@ -21,9 +22,10 @@ export class Bullet {
     this.height = height;
     this.x = x;
     this.y = y;
+    this.vy = 0.1;
   }
 
   move() {
-    this.y = this.y - 5;
+    this.y = this.y - 1;
   }
 }
