@@ -66,7 +66,12 @@ export function Form() {
               "
               onClick={() => setMaxPlayers((prev) => prev + 1)}
             >
-              <Image src={arrowImg!.src} fill alt="arrow button image" />
+              <Image
+                src={arrowImg!.src}
+                fill
+                alt="arrow button image"
+                sizes="40px"
+              />
             </button>
             <button
               type="button"
@@ -77,7 +82,12 @@ export function Form() {
                 maxPlayers > 1 && setMaxPlayers((prev) => prev - 1)
               }
             >
-              <Image src={arrowImg!.src} fill alt="arrow button image" />
+              <Image
+                src={arrowImg!.src}
+                fill
+                alt="arrow button image"
+                sizes="40px"
+              />
             </button>
           </div>
         </div>

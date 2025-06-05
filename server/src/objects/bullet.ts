@@ -26,6 +26,6 @@ export class Bullet {
   }
 
   move() {
-    this.y = this.y - this.height;
+    this.y = this.y - this.height * 2;
   }
 }

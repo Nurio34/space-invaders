@@ -14,7 +14,13 @@ export class Player {
     this.y = y;
   }
 
-  move(dx: number) {
-    this.x += dx;
+  move(x: number, y: number, canvasWidth: number, canvasHeight: number) {
+    if (x > canvasWidth - this.size) this.x = canvasWidth - this.size;
+    else this.x = x;
+
+    if (y > canvasHeight - this.size) this.y = canvasHeight - this.size;
+    else this.y = y;
+
+    if (y < canvasHeight / 2) this.y = canvasHeight / 2;
   }
 }

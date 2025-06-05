@@ -42,6 +42,8 @@ interface ContextType {
   setSocketId: Dispatch<SetStateAction<string | undefined>>;
   gameState: RoomType;
   setGameState: Dispatch<SetStateAction<RoomType>>;
+  isShooting: boolean;
+  setIsShooting: Dispatch<SetStateAction<boolean>>;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -70,6 +72,8 @@ export const Provider = ({ children }: { children: ReactNode }) => {
 
   const [gameState, setGameState] = useState<RoomType>({} as RoomType);
 
+  const [isShooting, setIsShooting] = useState(false);
+
   return (
     <Context.Provider
       value={{
@@ -89,6 +93,8 @@ export const Provider = ({ children }: { children: ReactNode }) => {
         setSocketId,
         gameState,
         setGameState,
+        isShooting,
+        setIsShooting,
       }}
     >
       {children}

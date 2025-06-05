@@ -1,39 +1,15 @@
 "use client";
 
-import { useGlobalContext } from "@/app/Context";
-import { useEffect } from "react";
+import { useGameStart } from "./hooks/useGameStart";
+import { useResizeCanvas } from "./hooks/useResizeCanvas";
+import { usePlayerMove } from "./hooks/usePlayerMove";
+import { useShooting } from "./hooks/useShooting";
 
 export function SockerListener() {
-  const {
-    SocketRef,
-    isGameStarted,
-    setIsGameStarted,
-    canvasSize,
-    setGameState,
-    roomId,
-    socketId,
-  } = useGlobalContext();
-
-  useEffect(() => {
-    const socket = SocketRef.current;
-
-    if (!socket) return;
-
-    socket.on("gameState", (gameState) => {
-      if (!isGameStarted) setIsGameStarted(true);
-      else setGameState(gameState);
-    });
-  }, [isGameStarted]);
-
-  useEffect(() => {
-    const socket = SocketRef.current;
-
-    if (!socket || !roomId || !socketId) return;
-
-    const { width, height } = canvasSize;
-
-    socket.emit("resetCanvas", { roomId, socketId, width, height });
-  }, [canvasSize, roomId, socketId]);
+  useGameStart();
+  useResizeCanvas();
+  usePlayerMove();
+  useShooting();
 
   return <div hidden />;
 }
