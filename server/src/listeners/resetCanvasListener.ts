@@ -9,8 +9,6 @@ export const resetCanvasListener = (
   socket: Socket<ClientToServerEvents, ServerToClientEvents>
 ) => {
   socket.on("resetCanvas", ({ roomId, socketId, width, height }) => {
-    console.log("ok..");
-
     const room = rooms[roomId];
     room.canvasSize = { width, height };
 

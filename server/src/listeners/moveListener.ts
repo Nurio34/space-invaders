@@ -11,6 +11,11 @@ export const moveListener = (
     const { width: canvasWidth, height: canvasHeight } =
       rooms[roomId].canvasSize;
     const player = detectPlayer(rooms, roomId, socketId);
+
+    if (!Boolean(player)) return;
+
+    if (player.isPlayerDead()) return;
+
     player.move(x, y, canvasWidth, canvasHeight);
   });
 };

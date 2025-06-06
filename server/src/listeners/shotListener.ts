@@ -11,6 +11,10 @@ export const shotListener = (
   socket.on("shot", ({ roomId, socketId }) => {
     const player = detectPlayer(rooms, roomId, socketId);
 
+    if (!Boolean(player)) return;
+
+    if (player.isPlayerDead()) return;
+
     const { size, x, y } = player;
     const bulletWidth = size / 8;
     const bulletHeight = bulletWidth * 2;

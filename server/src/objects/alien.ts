@@ -1,6 +1,7 @@
 import { CanvasSizeType } from "../types/game/client";
 
 export class Alien {
+  isPassBorder: boolean;
   width: number;
   height: number;
   minX: number;
@@ -20,7 +21,7 @@ export class Alien {
     vx: number,
     vy: number
   ) {
-    this.width = width;
+    (this.isPassBorder = false), (this.width = width);
     this.height = height;
     this.minX = minX;
     this.maxX = maxX;

@@ -3,6 +3,7 @@ import { RoomType } from "../types/game/server";
 export const detectAlienPlayerCollision = (room: RoomType) => {
   for (const playerId in room.players) {
     const player = room.players[playerId];
+    if (player.isPlayerDead()) continue; // ✅ Just skip this player
 
     const hitIndex = room.aliens.findIndex((alien) => {
       return (
@@ -14,10 +15,10 @@ export const detectAlienPlayerCollision = (room: RoomType) => {
     });
 
     if (hitIndex !== -1) {
+      player.decreaseLife();
       console.log(`${playerId} hit by alien`);
 
-      room.aliens.splice(hitIndex, 1); // Remove the alien
-      // io.to(playerId).emit("alienHit"); // Optionally notify player
+      room.aliens.splice(hitIndex, 1);
     }
   }
 };
