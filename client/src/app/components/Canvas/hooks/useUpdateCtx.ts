@@ -17,7 +17,7 @@ export const useUpdateCtx = () => {
 
     CtxRef.current = ctx;
     setCanvasSize({ width: canvas.width, height: canvas.height });
-  }, [CanvasRef, CtxRef, isAllAssetsLoaded]);
+  }, [CanvasRef, CtxRef, isAllAssetsLoaded, setCanvasSize]);
 
   useEffect(() => {
     updateCtx();

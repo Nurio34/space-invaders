@@ -16,17 +16,17 @@ export const useShooting = () => {
   useEffect(() => {
     if (!isGameStarted || !roomId || !socketId) return;
 
-    const handleMouseDown = (e: MouseEvent) => setIsShooting(true);
+    const handleMouseDown = () => setIsShooting(true);
     window.addEventListener("mousedown", handleMouseDown);
 
-    const handleMouseUp = (e: MouseEvent) => setIsShooting(false);
+    const handleMouseUp = () => setIsShooting(false);
     window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isGameStarted, roomId, socketId]);
+  }, [isGameStarted, roomId, socketId, setIsShooting]);
 
   useEffect(() => {
     if (!isShooting && shootingInterval.current) {
@@ -43,5 +43,5 @@ export const useShooting = () => {
     return () => {
       if (shootingInterval.current) clearInterval(shootingInterval.current);
     };
-  }, [isShooting]);
+  }, [isShooting, SocketRef, socketId]);
 };

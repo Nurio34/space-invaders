@@ -1,10 +1,10 @@
 "use client";
 
 import { useGlobalContext } from "@/app/Context";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export function AssetsLoader() {
-  const { assets, setAssets } = useGlobalContext();
+  const { setAssets } = useGlobalContext();
 
   useEffect(() => {
     const arrowImg = new Image();
@@ -22,7 +22,7 @@ export function AssetsLoader() {
         ...prev,
         shipImg: { el: shipImg, src: shipImg.src },
       }));
-  }, []);
+  }, [setAssets]);
 
   return <div hidden />;
 }

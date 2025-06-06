@@ -14,5 +14,5 @@ export const useGameStart = () => {
       if (!isGameStarted) setIsGameStarted(true);
       else setGameState(gameState);
     });
-  }, [isGameStarted]);
+  }, [isGameStarted, SocketRef, setGameState, setIsGameStarted]);
 };

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { io } from "socket.io-client";
 
 export function SocketInitilizer() {
-  const { SocketRef, setSocketId } = useGlobalContext();
+  const { SocketRef, setSocketId, isGameStarted } = useGlobalContext();
 
   useEffect(() => {
     const socket: SocketType = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
@@ -17,7 +17,7 @@ export function SocketInitilizer() {
     socket.on("disconnect", () => console.log("❌ Socket Disconnected"));
 
     SocketRef.current = socket;
-  }, []);
+  }, [SocketRef, setSocketId]);
 
   return <div hidden />;
 }

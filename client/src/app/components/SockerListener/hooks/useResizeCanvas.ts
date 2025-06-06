@@ -12,5 +12,5 @@ export const useResizeCanvas = () => {
     const { width, height } = canvasSize;
 
     socket.emit("resetCanvas", { roomId, socketId, width, height });
-  }, [canvasSize, roomId, socketId]);
+  }, [canvasSize, roomId, socketId, SocketRef]);
 };

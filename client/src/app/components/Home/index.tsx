@@ -2,7 +2,6 @@ import { useGlobalContext } from "@/app/Context";
 import { Form } from "./components/Form";
 import Loading from "./components/Loading";
 import { useEffect, useRef, useState } from "react";
-import { time } from "console";
 
 export function Home() {
   const { isAllAssetsLoaded, isGameStarted } = useGlobalContext();
@@ -29,8 +28,8 @@ export function Home() {
   return (
     isRender && (
       <div
-        className={`fixed z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen max-w-96 aspect-square
-          md:shadow-[0_10px_40px_-10px_black] rounded-lg py-2 px-10 transformation-transform duration-1000
+        className={`fixed z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen max-w-96 aspect-square select-none
+          md:shadow-[0_10px_40px_-10px_black] rounded-lg py-2 px-10 bg-base-100 transformation-transform duration-1000
           ${isGameStarted ? "opacity-0" : "opacity-100"}
         `}
       >

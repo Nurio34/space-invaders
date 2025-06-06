@@ -17,6 +17,8 @@ export function Form() {
     if (!socket || !socketId) return;
 
     const newRoomId = crypto.randomUUID();
+    console.log({ newRoomId });
+
     setRoomId(newRoomId);
     socket.emit("gameStart", {
       roomId: newRoomId,
@@ -92,7 +94,7 @@ export function Form() {
           </div>
         </div>
       </div>
-      <div className="flex gap-x-4">
+      <div className="flex gap-x-4 items-center">
         <button type="submit" className="btn btn-primary">
           Start
         </button>

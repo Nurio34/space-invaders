@@ -21,4 +21,6 @@ export interface ClientToServerEvents {
     y: number;
   }) => void;
   shot: (action: { roomId: string; socketId: string }) => void;
+  continue: (action: { roomId: string; socketId: string }) => void;
+  leave: (action: { roomId: string; socketId: string }) => void;
 }

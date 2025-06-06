@@ -5,7 +5,7 @@ import { SocketInitilizer } from "./components/Socket";
 import { Home } from "./components/Home";
 import { Canvas } from "./components/Canvas";
 import { SockerListener } from "./components/SockerListener";
-import { useGlobalContext } from "./Context";
+import PlayerDead from "./components/PlayerDead";
 
 export default function Client() {
   return (
@@ -15,6 +15,7 @@ export default function Client() {
       <Home />
       <Canvas />
       <SockerListener />
+      <PlayerDead />
     </div>
   );
 }

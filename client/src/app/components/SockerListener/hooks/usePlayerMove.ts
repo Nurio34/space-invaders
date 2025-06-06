@@ -19,5 +19,5 @@ export const usePlayerMove = () => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [isGameStarted, roomId, socketId]);
+  }, [isGameStarted, roomId, socketId, SocketRef]);
 };
