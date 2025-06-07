@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020", // Slightly newer than ES6; good for Node 14+
-    "module": "esnext",
+    "module": "commonjs",
     "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true, // Allows default imports from CommonJS modules
