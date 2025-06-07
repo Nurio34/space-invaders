@@ -9,17 +9,26 @@ export const useShooting = () => {
     socketId,
     isShooting,
     SocketRef,
+    gameState,
   } = useGlobalContext();
 
   const shootingInterval = useRef<NodeJS.Timeout | null>(null);
+
+  const lifeRef = useRef(3);
+
+  useEffect(() => {
+    if (socketId && gameState.id && gameState.players[socketId]) {
+      lifeRef.current = gameState.players[socketId].life;
+    }
+  }, [gameState, socketId]);
 
   useEffect(() => {
     if (!isGameStarted || !roomId || !socketId) return;
 
     const handleMouseDown = () => setIsShooting(true);
-    window.addEventListener("mousedown", handleMouseDown);
-
     const handleMouseUp = () => setIsShooting(false);
+
+    window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
@@ -29,19 +38,26 @@ export const useShooting = () => {
   }, [isGameStarted, roomId, socketId, setIsShooting]);
 
   useEffect(() => {
-    if (!isShooting && shootingInterval.current) {
+    if (shootingInterval.current) {
+      clearInterval(shootingInterval.current);
       shootingInterval.current = null;
-      return;
-    } else {
+    }
+
+    if (isShooting) {
       shootingInterval.current = setInterval(() => {
         const socket = SocketRef.current;
         if (!socket || !roomId || !socketId) return;
+        if (lifeRef.current <= 0) return;
+
         socket.emit("shot", { roomId, socketId });
       }, 1000 / 18);
     }
 
     return () => {
-      if (shootingInterval.current) clearInterval(shootingInterval.current);
+      if (shootingInterval.current) {
+        clearInterval(shootingInterval.current);
+        shootingInterval.current = null;
+      }
     };
-  }, [isShooting, SocketRef, socketId]);
+  }, [isShooting, socketId, roomId, SocketRef]);
 };

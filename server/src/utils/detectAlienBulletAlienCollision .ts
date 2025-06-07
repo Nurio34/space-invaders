@@ -14,13 +14,15 @@ export const detectAlienBulletAlienCollision = (room: RoomType) => {
         bullet.y + bullet.height > alien.y;
 
       if (collided) {
-        // Remove the alien
-        room.aliens.splice(i, 1);
+        alien.life -= 1;
+        if (alien.life <= 0) {
+          room.aliens.splice(i, 1);
+        }
         hit = true;
-        break;
+        break; // Stop checking more aliens for this bullet
       }
     }
 
-    return !hit; // Keep bullet only if no alien was hit
+    return !hit; // Remove the bullet if it hit an alien
   });
 };

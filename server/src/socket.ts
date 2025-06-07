@@ -6,6 +6,8 @@ import { gameStartListener } from "./listeners/gameStartListener";
 import { moveListener } from "./listeners/moveListener";
 import { shotListener } from "./listeners/shotListener";
 import { disconnectListener } from "./listeners/disconnectListener";
+import { continueListener } from "./listeners/continueListener";
+import { leaveRequestListener } from "./listeners/leaveRequestListener";
 
 const rooms: Record<string, RoomType> = {};
 const gameLoopIntervals: Record<string, NodeJS.Timeout> = {};
@@ -29,41 +31,15 @@ export const socketSetup = (
     );
     moveListener(rooms, socket);
     shotListener(rooms, socket);
-
-    //! **
-    socket.on("continue", ({ roomId, socketId }) => {
-      const player = rooms[roomId].players[socketId];
-      player.revieve();
-    });
+    continueListener(rooms, socket);
+    leaveRequestListener(
+      rooms,
+      socket,
+      gameLoopIntervals,
+      alienSpawnIntervals,
+      alienBulletSpawnIntervals
+    );
     //! ***
-
-    //! ***
-    socket.on("leave", ({ roomId, socketId }) => {
-      const room = rooms[roomId];
-      if (!room) return;
-
-      delete room.players[socketId];
-      socket.leave(roomId);
-
-      // Check if room is now empty
-      const isRoomEmpty = Object.keys(room.players).length === 0;
-
-      if (isRoomEmpty) {
-        // Clean up intervals
-        clearInterval(gameLoopIntervals[roomId]);
-        clearInterval(alienSpawnIntervals[roomId]);
-        clearInterval(alienBulletSpawnIntervals[roomId]);
-
-        delete gameLoopIntervals[roomId];
-        delete alienSpawnIntervals[roomId];
-        delete alienBulletSpawnIntervals[roomId];
-        delete rooms[roomId];
-
-        console.log(`Room ${roomId} deleted`);
-      } else {
-        console.log(`Player ${socketId} left room ${roomId}`);
-      }
-    });
 
     //! ***
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 
 export function Form() {
-  const { SocketRef, assets, setRoomId, canvasSize, socketId } =
+  const { SocketRef, assets, setRoomId, canvasSize, socketId, isGameStarted } =
     useGlobalContext();
   const { arrowImg } = assets;
 
@@ -12,12 +12,14 @@ export function Form() {
 
   const submitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (isGameStarted) return;
+
     const socket = SocketRef.current;
 
     if (!socket || !socketId) return;
 
     const newRoomId = crypto.randomUUID();
-    console.log({ newRoomId });
 
     setRoomId(newRoomId);
     socket.emit("gameStart", {
@@ -34,7 +36,7 @@ export function Form() {
       className="h-full flex flex-col justify-evenly items-center"
       onSubmit={submitForm}
     >
-      <h1 className="text-2xl font-bold">Space Invaders</h1>
+      <h1 className="text-2xl font-bold text-base-100">Space Invaders</h1>
       <div className="flex items-center gap-x-4">
         <label htmlFor="name">
           <span className="font-semibold text-sm">Name</span>
@@ -95,10 +97,18 @@ export function Form() {
         </div>
       </div>
       <div className="flex gap-x-4 items-center">
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-primary transition-colors duration-1000"
+          disabled={isGameStarted}
+        >
           Start
         </button>
-        <button type="submit" className="btn btn-secondary">
+        <button
+          type="submit"
+          className="btn btn-secondary transition-colors duration-1000"
+          disabled={isGameStarted}
+        >
           Join
         </button>
       </div>

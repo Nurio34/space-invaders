@@ -1,6 +1,8 @@
-import { CanvasSizeType } from "../types/game/client";
-
 export class Alien {
+  name: string;
+  color: string;
+  score: number;
+  life: number;
   isPassBorder: boolean;
   width: number;
   height: number;
@@ -12,6 +14,10 @@ export class Alien {
   vy: number;
 
   constructor(
+    name: string,
+    color: string,
+    score: number,
+    life: number,
     width: number,
     height: number,
     minX: number,
@@ -21,7 +27,12 @@ export class Alien {
     vx: number,
     vy: number
   ) {
-    (this.isPassBorder = false), (this.width = width);
+    this.name = name;
+    this.color = color;
+    this.score = score;
+    this.life = life;
+    this.isPassBorder = false;
+    this.width = width;
     this.height = height;
     this.minX = minX;
     this.maxX = maxX;

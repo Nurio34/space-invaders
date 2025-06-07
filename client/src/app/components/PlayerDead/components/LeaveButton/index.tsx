@@ -1,15 +1,14 @@
 import { useGlobalContext } from "@/app/Context";
 
 function LeaveButton() {
-  const { SocketRef, roomId, socketId, setIsGameStarted } = useGlobalContext();
+  const { SocketRef, roomId, socketId } = useGlobalContext();
 
   const leaveRoom = () => {
     const socket = SocketRef.current;
 
     if (!socket || !roomId || !socketId) return;
 
-    socket.emit("leave", { roomId, socketId });
-    setIsGameStarted(false);
+    socket.emit("leaveRequest", { roomId, socketId });
   };
 
   return (

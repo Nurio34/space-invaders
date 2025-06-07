@@ -17,6 +17,9 @@ import { ClientToServerEvents } from "./types/game/client";
 interface AssetsType {
   arrowImg: { el: HTMLImageElement; src: string } | null;
   shipImg: { el: HTMLImageElement; src: string } | null;
+  spaceImg: { el: HTMLImageElement; src: string } | null;
+  bulletImg: { el: HTMLImageElement; src: string } | null;
+  ordinaryAlien: { el: HTMLImageElement; src: string } | null;
 }
 
 export type SocketType = Socket<ServerToClientEvents, ClientToServerEvents>;
@@ -44,6 +47,8 @@ interface ContextType {
   setGameState: Dispatch<SetStateAction<RoomType>>;
   isShooting: boolean;
   setIsShooting: Dispatch<SetStateAction<boolean>>;
+  isPlayerDead: boolean;
+  setIsPlayerDead: Dispatch<SetStateAction<boolean>>;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -52,6 +57,9 @@ export const Provider = ({ children }: { children: ReactNode }) => {
   const [assets, setAssets] = useState<AssetsType>({
     arrowImg: null,
     shipImg: null,
+    spaceImg: null,
+    bulletImg: null,
+    ordinaryAlien: null,
   });
   const isAllAssetsLoaded = Object.values(assets).every((asset) => asset);
 
@@ -74,6 +82,8 @@ export const Provider = ({ children }: { children: ReactNode }) => {
 
   const [isShooting, setIsShooting] = useState(false);
 
+  const [isPlayerDead, setIsPlayerDead] = useState(false);
+
   return (
     <Context.Provider
       value={{
@@ -95,6 +105,8 @@ export const Provider = ({ children }: { children: ReactNode }) => {
         setGameState,
         isShooting,
         setIsShooting,
+        isPlayerDead,
+        setIsPlayerDead,
       }}
     >
       {children}

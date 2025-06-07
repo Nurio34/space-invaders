@@ -1,6 +1,8 @@
 import { RoomType } from "../types/game/server";
 
 export const detectBulletAlienCollision = (room: RoomType) => {
+  const deadAliens = new Set<number>();
+
   room.bullets = room.bullets.filter((bullet) => {
     const hitIndex = room.aliens.findIndex((alien) => {
       return (
@@ -12,10 +14,25 @@ export const detectBulletAlienCollision = (room: RoomType) => {
     });
 
     if (hitIndex !== -1) {
-      room.aliens.splice(hitIndex, 1); // Remove the hit alien
-      return false; // Remove the bullet too
+      const hitAlien = room.aliens[hitIndex];
+      hitAlien.life -= 1;
+
+      if (hitAlien.life <= 0) {
+        deadAliens.add(hitIndex);
+
+        // ✅ Use bullet.ownerId to get the player and award points
+        const player = room.players[bullet.id];
+        if (player) {
+          player.score += hitAlien.score;
+        }
+      }
+
+      return false; // remove bullet
     }
 
-    return true; // Keep the bullet
+    return true; // keep bullet
   });
+
+  // Remove all dead aliens
+  room.aliens = room.aliens.filter((_, index) => !deadAliens.has(index));
 };

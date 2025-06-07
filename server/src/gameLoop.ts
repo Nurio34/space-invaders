@@ -1,7 +1,6 @@
 import { Server } from "socket.io";
 import { ClientToServerEvents } from "./types/game/client";
 import { RoomType, ServerToClientEvents } from "./types/game/server";
-import { alienSpawner } from "./utils/alienSpawner";
 import { handleEmptyRoom } from "./utils/handleEmptyRoom";
 import { bulletsMove } from "./utils/bulletsMove";
 import { aliensMove } from "./utils/aliensMove";
@@ -16,6 +15,8 @@ import { detectAlienBulletAlienCollision } from "./utils/detectAlienBulletAlienC
 import { detectAlienPassBorder } from "./utils/detectAlienPassBorder";
 import { detectPlayerPlayerCollision } from "./utils/detectPlayerPlayerCollision";
 import { detectBulletAlienBulletCollision } from "./utils/detectBulletAlienBulletCollision";
+import { alienSpawner } from "./utils/alienSpawner";
+import { detectAlienAlienCollision } from "./utils/detectAlienAlienCollision";
 
 export const gameLoop = (
   rooms: Record<string, RoomType>,
@@ -51,6 +52,10 @@ export const gameLoop = (
     detectAlienBulletPlayerCollision(room);
     detectAlienBulletAlienCollision(room);
     detectBulletAlienBulletCollision(room);
+    detectAlienAlienCollision(room);
+
+    //! *** detect alien - alien collision, if there, decresae their life by 1 ***
+    //! ***********************
 
     detectAlienPassBorder(room);
     detectPlayerPlayerCollision(room);

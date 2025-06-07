@@ -26,7 +26,7 @@ export const gameStartListener = (
           id: roomId,
           maxPlayers,
           canvasSize,
-          // players: { [id]: player },
+          // players: { [id]: botPlayer },
           players: {},
           bullets: [],
           aliens: [],

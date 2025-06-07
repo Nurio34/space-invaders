@@ -22,6 +22,9 @@ export const detectBulletAlienBulletCollision = (room: RoomType) => {
       if (isColliding) {
         collidedPlayerBulletIndexes.add(i);
         collidedAlienBulletIndexes.add(j);
+
+        const player = room.players[pb.id];
+        player.score += 2;
         break; // one collision per player bullet
       }
     }

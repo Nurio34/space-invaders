@@ -19,7 +19,7 @@ export class Player {
     this.id = id;
     this.name = name;
     this.maxLife = maxLife;
-    this.life = this.maxLife;
+    this.life = 10;
     this.size = size;
     this.x = x;
     this.y = y;

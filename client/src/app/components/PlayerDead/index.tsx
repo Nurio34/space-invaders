@@ -5,19 +5,19 @@ import LeaveButton from "./components/LeaveButton";
 import Countdown from "./components/Countdown";
 
 function PlayerDead() {
-  const { gameState, socketId } = useGlobalContext();
+  const { gameState, socketId, isPlayerDead, setIsPlayerDead } =
+    useGlobalContext();
 
-  const [isPlayerDead, setIsPlayerDead] = useState(false);
   const [isRender, setIsRender] = useState(false);
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!gameState.id || !socketId) return;
 
-    const playerLife = gameState.players[socketId]?.life;
+    const playerLife = gameState.players[socketId].life;
     if (playerLife <= 0) setIsPlayerDead(true);
     else setIsPlayerDead(false);
-  }, [gameState, socketId]);
+  }, [gameState, socketId, setIsPlayerDead]);
 
   useEffect(() => {
     if (timeout.current) clearTimeout(timeout.current);
@@ -27,7 +27,7 @@ function PlayerDead() {
         setIsRender(true);
       }, 100);
     } else {
-      setIsRender(false); // Optional: reset render if player revives
+      setIsRender(false);
     }
 
     return () => {
@@ -37,10 +37,10 @@ function PlayerDead() {
 
   return (
     isPlayerDead && (
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  w-screen max-w-96 aspect-square select-none">
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  w-screen md:max-w-96 aspect-square max-h-96 select-none">
         <div
-          className={`w-full h-full bg-base-100/10 transition-all duration-1000
-            flex flex-col items-center justify-evenly
+          className={`w-full h-full bg-gradient-to-b from-transparent via-base-100/10 to-transparent  transition-all duration-1000
+            flex flex-col items-center justify-evenly 
             ${
               isRender
                 ? "opacity-100 md:shadow-[0_10px_40px_-10px_black]"
@@ -48,7 +48,7 @@ function PlayerDead() {
             }`}
           style={{ backdropFilter: "blur(6px)" }}
         >
-          <div className="text-2xl font-bold">You Dead</div>
+          <div className="text-2xl font-bold text-base-100">You Dead</div>
           <Countdown />
           <div className="flex gap-x-4 items-center">
             <ContinueButton />

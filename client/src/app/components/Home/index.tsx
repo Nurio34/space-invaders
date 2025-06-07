@@ -28,10 +28,11 @@ export function Home() {
   return (
     isRender && (
       <div
-        className={`fixed z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen max-w-96 aspect-square select-none
-          md:shadow-[0_10px_40px_-10px_black] rounded-lg py-2 px-10 bg-base-100 transformation-transform duration-1000
+        className={`fixed z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen md:max-w-96 aspect-square max-h-96 select-none
+          md:shadow-[0_10px_40px_-10px_black] bg-gradient-to-b from-transparent via-base-100/10 to-transparent rounded-lg py-2 px-10 transformation-transform duration-1000
           ${isGameStarted ? "opacity-0" : "opacity-100"}
         `}
+        style={{ backdropFilter: "blur(6px)" }}
       >
         {!isAllAssetsLoaded ? <Loading /> : <Form />}
       </div>

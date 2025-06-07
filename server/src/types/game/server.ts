@@ -18,4 +18,5 @@ export type GameStateType = RoomType;
 
 export interface ServerToClientEvents {
   gameState: (state: GameStateType) => void;
+  leave: () => void;
 }

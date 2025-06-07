@@ -1,0 +1,3 @@
+
+ - "alienBulletsCollide", "alienCollide" and "playerColide"a karşı 3 saniye dokunulmazlık sistemi kur.
+ - oyunu canlıya geçir

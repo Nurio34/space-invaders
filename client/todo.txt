@@ -1,0 +1,4 @@
+
+- oyunu canlıya geçir
+
+- "Mobile" için "MoveControl" ve "ShotControl" yap
