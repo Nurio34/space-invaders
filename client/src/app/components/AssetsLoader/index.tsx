@@ -8,7 +8,7 @@ export function AssetsLoader() {
 
   useEffect(() => {
     const arrowImg = new Image();
-    arrowImg.src = "/arrow.png";
+    arrowImg.src = "/arrow.webp";
     arrowImg.onload = () =>
       setAssets((prev) => ({
         ...prev,

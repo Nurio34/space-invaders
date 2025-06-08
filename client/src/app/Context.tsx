@@ -12,7 +12,11 @@ import {
 } from "react";
 import { Socket } from "socket.io-client";
 import { RoomType, ServerToClientEvents } from "./types/game/server";
-import { ClientToServerEvents } from "./types/game/client";
+import {
+  ClientToServerEvents,
+  MoveArrayType,
+  VelocityType,
+} from "./types/game/client";
 
 interface AssetsType {
   arrowImg: { el: HTMLImageElement; src: string } | null;
@@ -49,6 +53,8 @@ interface ContextType {
   setIsShooting: Dispatch<SetStateAction<boolean>>;
   isPlayerDead: boolean;
   setIsPlayerDead: Dispatch<SetStateAction<boolean>>;
+  moveArrayRef: RefObject<MoveArrayType>;
+  velocityRef: RefObject<VelocityType>;
 }
 
 const Context = createContext<ContextType | undefined>(undefined);
@@ -84,6 +90,9 @@ export const Provider = ({ children }: { children: ReactNode }) => {
 
   const [isPlayerDead, setIsPlayerDead] = useState(false);
 
+  const moveArrayRef = useRef<MoveArrayType>([]);
+  const velocityRef = useRef<VelocityType>({ x: 1, y: 1 });
+
   return (
     <Context.Provider
       value={{
@@ -107,6 +116,8 @@ export const Provider = ({ children }: { children: ReactNode }) => {
         setIsShooting,
         isPlayerDead,
         setIsPlayerDead,
+        moveArrayRef,
+        velocityRef,
       }}
     >
       {children}

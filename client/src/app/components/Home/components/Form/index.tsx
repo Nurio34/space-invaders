@@ -3,9 +3,8 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 
 export function Form() {
-  const { SocketRef, assets, setRoomId, canvasSize, socketId, isGameStarted } =
+  const { SocketRef, setRoomId, canvasSize, socketId, isGameStarted } =
     useGlobalContext();
-  const { arrowImg } = assets;
 
   const [name, setName] = useState("John");
   const [maxPlayers, setMaxPlayers] = useState(1);
@@ -39,7 +38,7 @@ export function Form() {
       <h1 className="text-2xl font-bold text-base-100">Space Invaders</h1>
       <div className="flex items-center gap-x-4">
         <label htmlFor="name">
-          <span className="font-semibold text-sm">Name</span>
+          <span className="font-semibold text-sm text-base-100">Name</span>
           <input
             type="text"
             name="name"
@@ -52,7 +51,9 @@ export function Form() {
         </label>
         <div className="flex items-center gap-x-2">
           <label htmlFor="players">
-            <span className="font-semibold text-sm">Max. Players</span>
+            <span className="font-semibold text-sm text-base-100">
+              Max. Players
+            </span>
             <input
               type="number"
               name="players"
@@ -62,7 +63,7 @@ export function Form() {
               onChange={(e) => setMaxPlayers(parseInt(e.target.value))}
             />
           </label>
-          <div>
+          <div className="flex flex-col justify-center">
             <button
               type="button"
               className="relative w-10 aspect-square cursor-pointer transition-transform
@@ -71,7 +72,7 @@ export function Form() {
               onClick={() => setMaxPlayers((prev) => prev + 1)}
             >
               <Image
-                src={arrowImg!.src}
+                src={"/arrow.webp"}
                 fill
                 alt="arrow button image"
                 sizes="40px"
@@ -87,7 +88,7 @@ export function Form() {
               }
             >
               <Image
-                src={arrowImg!.src}
+                src={"/arrow.webp"}
                 fill
                 alt="arrow button image"
                 sizes="40px"
