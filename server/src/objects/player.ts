@@ -23,7 +23,7 @@ export class Player {
     this.id = id;
     this.name = name;
     this.maxLife = maxLife;
-    this.life = 10;
+    this.life = 50;
     this.size = size;
     this.moveArray = [];
     this.velocity = { x: 0, y: 0 };
@@ -46,7 +46,6 @@ export class Player {
       this.y += (this.velocity.y * this.size) / 8;
     }
 
-    // Optionally clamp to canvas boundaries
     this.x = Math.max(0, Math.min(canvasWidth - this.size, this.x));
     this.y = Math.max(0, Math.min(canvasHeight - this.size, this.y));
   }

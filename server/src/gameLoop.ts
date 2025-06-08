@@ -57,19 +57,15 @@ export const gameLoop = (
     detectAlienBulletAlienCollision(room);
     detectBulletAlienBulletCollision(room);
     detectAlienAlienCollision(room);
-
-    //! *** detect alien - alien collision, if there, decresae their life by 1 ***
-    //! ***********************
-
-    detectAlienPassBorder(room);
     detectPlayerPlayerCollision(room);
+    detectAlienPassBorder(room);
 
     broadcastGamestate(room, roomId, io);
   }, 1000 / 60);
 
   alienSpawnIntervals[roomId] = setInterval(() => {
     alienSpawner(rooms, roomId);
-  }, 3000);
+  }, 1000);
   alienSpawner(rooms, roomId);
 
   alienBulletSpawnIntervals[roomId] = setInterval(() => {
