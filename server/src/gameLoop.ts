@@ -42,6 +42,10 @@ export const gameLoop = (
 
     if (!room) return;
 
+    for (const player of Object.values(room.players)) {
+      player.move(room.canvasSize.width, room.canvasSize.height);
+    }
+
     bulletsMove(room);
     aliensMove(room);
     aliensBulletsMove(room);

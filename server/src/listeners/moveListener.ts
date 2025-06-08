@@ -7,15 +7,14 @@ export const moveListener = (
   rooms: Record<string, RoomType>,
   socket: Socket<ClientToServerEvents, ServerToClientEvents>
 ) => {
-  socket.on("move", ({ roomId, socketId, x, y }) => {
-    const { width: canvasWidth, height: canvasHeight } =
-      rooms[roomId].canvasSize;
+  socket.on("move", ({ roomId, socketId, moveArray, velocity }) => {
     const player = detectPlayer(rooms, roomId, socketId);
 
     if (!Boolean(player)) return;
 
     if (player.isPlayerDead()) return;
 
-    player.move(x, y, canvasWidth, canvasHeight);
+    player.moveArray = moveArray;
+    player.velocity = velocity;
   });
 };

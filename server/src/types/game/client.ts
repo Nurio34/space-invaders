@@ -1,5 +1,8 @@
 export type CanvasSizeType = { width: number; height: number };
 
+export type MoveArrayType = ("right" | "left" | "up" | "down")[];
+export type VelocityType = { x: number; y: number };
+
 export interface ClientToServerEvents {
   resetCanvas: (action: {
     roomId: string;
@@ -17,8 +20,8 @@ export interface ClientToServerEvents {
   move: (action: {
     roomId: string;
     socketId: string;
-    x: number;
-    y: number;
+    moveArray: MoveArrayType;
+    velocity: VelocityType;
   }) => void;
   shot: (action: { roomId: string; socketId: string }) => void;
   continue: (action: { roomId: string; socketId: string }) => void;
