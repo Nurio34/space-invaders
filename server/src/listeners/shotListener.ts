@@ -9,7 +9,9 @@ export const shotListener = (
   socket: Socket<ClientToServerEvents, ServerToClientEvents>
 ) => {
   socket.on("shoot", ({ roomId, socketId, isShooting }) => {
-    const player = detectPlayer(rooms, roomId, socketId);
+    const room = rooms[roomId];
+
+    const player = detectPlayer(room, socketId);
 
     if (!Boolean(player)) return;
     if (player.isPlayerDead()) return;

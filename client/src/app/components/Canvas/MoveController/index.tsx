@@ -2,15 +2,22 @@ import { useGlobalContext } from "@/app/Context";
 import { useEffect, useState } from "react";
 
 function MoveController() {
-  const { canvasSize, moveArrayRef, velocityRef, SocketRef, roomId, socketId } =
-    useGlobalContext();
+  const {
+    canvasSize,
+    moveArrayRef,
+    velocityRef,
+    SocketRef,
+    roomId,
+    socketId,
+    isGameStarted,
+  } = useGlobalContext();
 
-  const buttonSize = 80;
+  const buttonSize = 120;
   const buttonOffset = 20;
   const centerX = buttonOffset + buttonSize / 2;
   const centerY = canvasSize.height - buttonOffset - buttonSize / 2;
 
-  const inneSize = buttonSize / 2;
+  const inneSize = buttonSize / 3;
   const innerCenter = buttonSize / 2;
 
   const [touchEvent, setTouchEvent] = useState({
@@ -36,13 +43,13 @@ function MoveController() {
     if (position.y > buttonSize / 2)
       setPosition((prev) => ({ ...prev, y: buttonSize / 2 }));
     if (position.y < -buttonSize / 2)
-      setPosition((prev) => ({ ...prev, y: -40 }));
+      setPosition((prev) => ({ ...prev, y: -buttonSize / 2 }));
   }, [position]);
 
   useEffect(() => {
-    if (position.x >= -40 && position.x <= 40)
+    if (position.x >= -buttonSize / 2 && position.x <= buttonSize / 2)
       velocityRef.current.x = Math.abs(position.x) / (buttonSize / 2);
-    if (position.y >= -40 && position.y <= 40)
+    if (position.y >= -buttonSize / 2 && position.y <= buttonSize / 2)
       velocityRef.current.y = Math.abs(position.y) / (buttonSize / 2);
   }, [position]);
 
@@ -57,15 +64,19 @@ function MoveController() {
   useEffect(() => {
     const socket = SocketRef.current;
 
-    if (!socket || !roomId || !socketId) return;
+    const interval = setInterval(() => {
+      if (!socket || !roomId || !socketId || !isGameStarted) return;
 
-    socket.emit("move", {
-      roomId,
-      socketId,
-      moveArray: moveArrayRef.current,
-      velocity: velocityRef.current,
-    });
-  }, [position, SocketRef, roomId, socketId]);
+      socket.emit("move", {
+        roomId,
+        socketId,
+        moveArray: moveArrayRef.current,
+        velocity: velocityRef.current,
+      });
+    }, 1000 / 60); // emit at most every 100ms
+
+    return () => clearInterval(interval);
+  }, [SocketRef, roomId, socketId, isGameStarted]);
 
   return (
     <button
@@ -90,6 +101,7 @@ function MoveController() {
       onTouchEnd={() => {
         setTouchEvent({ x: centerX, y: centerY, isDragging: false });
       }}
+      onContextMenu={(e) => e.preventDefault()}
     >
       <div
         className={`absolute aspect-square rounded-full select-none

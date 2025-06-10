@@ -12,7 +12,7 @@ export const resetCanvasListener = (
     const room = rooms[roomId];
     room.canvasSize = { width, height };
 
-    const player = detectPlayer(rooms, roomId, socketId);
+    const player = detectPlayer(room, socketId);
     const playerSize = handlePlayerSize(width);
     player.size = playerSize;
     player.x = width / 2 - player.size / 2;

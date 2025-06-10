@@ -74,6 +74,7 @@ export const Provider = ({ children }: { children: ReactNode }) => {
   const [roomId, setRoomId] = useState<RoomIdType>(null);
 
   const [isGameStarted, setIsGameStarted] = useState(false);
+  console.log({ isGameStarted });
 
   const CanvasRef = useRef<HTMLCanvasElement | null>(null);
   const CtxRef = useRef<CanvasRenderingContext2D | null>(null);

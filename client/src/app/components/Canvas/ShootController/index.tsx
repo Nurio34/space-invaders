@@ -2,19 +2,19 @@ import { useGlobalContext } from "@/app/Context";
 import { useEffect, useState } from "react";
 
 function ShootController() {
-  const { SocketRef, roomId, socketId } = useGlobalContext();
+  const { SocketRef, roomId, socketId, isGameStarted } = useGlobalContext();
 
   const [isShooting, setIsShooting] = useState(false);
 
   useEffect(() => {
     const socket = SocketRef.current;
 
-    if (!socket || !roomId || !socketId) return;
+    if (!socket || !roomId || !socketId || !isGameStarted) return;
 
     if (isShooting)
       socket.emit("shoot", { isShooting: true, roomId, socketId });
     else socket.emit("shoot", { isShooting: false, roomId, socketId });
-  }, [isShooting, SocketRef, roomId, socketId]);
+  }, [isShooting, SocketRef, roomId, socketId, isGameStarted]);
 
   return (
     <button

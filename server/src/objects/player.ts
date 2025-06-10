@@ -1,4 +1,8 @@
-import { MoveArrayType, VelocityType } from "../types/game/client";
+import {
+  CanvasSizeType,
+  MoveArrayType,
+  VelocityType,
+} from "../types/game/client";
 
 export class Player {
   id: string;
@@ -26,7 +30,7 @@ export class Player {
     this.id = id;
     this.name = name;
     this.maxLife = maxLife;
-    this.life = 50;
+    this.life = this.maxLife;
     this.size = size;
     this.moveArray = [];
     this.velocity = { x: 0, y: 0 };
@@ -64,8 +68,10 @@ export class Player {
     return this.life <= 0;
   }
 
-  revieve() {
+  revieve(canvasSize: CanvasSizeType) {
     this.score = 0;
     this.life = this.maxLife;
+    this.x = canvasSize.width / 2 - this.size / 2;
+    this.y = canvasSize.height - this.size * 2;
   }
 }

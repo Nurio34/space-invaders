@@ -28,6 +28,10 @@ export interface ClientToServerEvents {
     socketId: string;
     isShooting: boolean;
   }) => void;
-  continue: (action: { roomId: string; socketId: string }) => void;
+  continue: (action: {
+    roomId: string;
+    socketId: string;
+    canvasSize: CanvasSizeType;
+  }) => void;
   leaveRequest: (action: { roomId: string; socketId: string }) => void;
 }

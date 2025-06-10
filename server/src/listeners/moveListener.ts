@@ -8,10 +8,12 @@ export const moveListener = (
   socket: Socket<ClientToServerEvents, ServerToClientEvents>
 ) => {
   socket.on("move", ({ roomId, socketId, moveArray, velocity }) => {
-    const player = detectPlayer(rooms, roomId, socketId);
+    const room = rooms[roomId];
+    if (!room) return;
+
+    const player = detectPlayer(room, socketId);
 
     if (!Boolean(player)) return;
-
     if (player.isPlayerDead()) return;
 
     player.moveArray = moveArray;

@@ -5,7 +5,7 @@ import LeaveButton from "./components/LeaveButton";
 import Countdown from "./components/Countdown";
 
 function PlayerDead() {
-  const { gameState, socketId, isPlayerDead, setIsPlayerDead } =
+  const { gameState, socketId, isPlayerDead, setIsPlayerDead, isGameStarted } =
     useGlobalContext();
 
   const [isRender, setIsRender] = useState(false);
@@ -34,6 +34,10 @@ function PlayerDead() {
       if (timeout.current) clearTimeout(timeout.current);
     };
   }, [isPlayerDead]);
+
+  useEffect(() => {
+    if (!isGameStarted) setIsPlayerDead(false);
+  }, [isGameStarted]);
 
   return (
     isPlayerDead && (

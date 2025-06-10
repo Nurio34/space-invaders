@@ -1,11 +1,6 @@
 import { RoomType } from "../types/game/server";
 
-export const detectPlayer = (
-  rooms: Record<string, RoomType>,
-  roomId: string,
-  socketId: string
-) => {
-  const room = rooms[roomId];
+export const detectPlayer = (room: RoomType, socketId: string) => {
   const player = room.players[socketId];
 
   return player;
