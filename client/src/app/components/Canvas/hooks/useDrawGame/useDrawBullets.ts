@@ -13,7 +13,6 @@ export const useDrawBullets = () => {
     const { bullets } = gameState;
 
     bullets.forEach((bullet) => {
-      if (bullet.id === socketId) return;
       const { x, y, width, height } = bullet;
       ctx.drawImage(bulletImg.el, x, y, width, height);
     });

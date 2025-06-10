@@ -6,6 +6,8 @@ import { Home } from "./components/Home";
 import { Canvas } from "./components/Canvas";
 import { SockerListener } from "./components/SockerListener";
 import PlayerDead from "./components/PlayerDead";
+import MoveController from "./components/Canvas/MoveController";
+import ShootController from "./components/Canvas/ShootController";
 
 export default function Client() {
   return (
@@ -16,6 +18,8 @@ export default function Client() {
       <Canvas />
       <SockerListener />
       <PlayerDead />
+      <MoveController />
+      <ShootController />
     </div>
   );
 }

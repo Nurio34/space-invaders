@@ -23,7 +23,11 @@ export interface ClientToServerEvents {
     moveArray: MoveArrayType;
     velocity: VelocityType;
   }) => void;
-  shot: (action: { roomId: string; socketId: string }) => void;
+  shoot: (action: {
+    roomId: string;
+    socketId: string;
+    isShooting: boolean;
+  }) => void;
   continue: (action: { roomId: string; socketId: string }) => void;
   leaveRequest: (action: { roomId: string; socketId: string }) => void;
 }

@@ -8,27 +8,12 @@ export const shotListener = (
   rooms: Record<string, RoomType>,
   socket: Socket<ClientToServerEvents, ServerToClientEvents>
 ) => {
-  socket.on("shot", ({ roomId, socketId }) => {
+  socket.on("shoot", ({ roomId, socketId, isShooting }) => {
     const player = detectPlayer(rooms, roomId, socketId);
 
     if (!Boolean(player)) return;
-
     if (player.isPlayerDead()) return;
 
-    const { size, x, y } = player;
-    const bulletWidth = size / 8;
-    const bulletHeight = bulletWidth * 2;
-
-    const newBullet = new Bullet(
-      socketId,
-      size,
-      bulletWidth,
-      bulletHeight,
-      x + size / 2 - bulletWidth / 2,
-      y
-    );
-
-    const room = rooms[roomId];
-    room.bullets.push(newBullet);
+    player.isShooting = isShooting;
   });
 };

@@ -6,7 +6,6 @@ import { useDrawPlayerLife } from "./useDrawPlayerLife";
 import { useResetCanvas } from "./useResetCanvas";
 import { useDrawAlienBullets } from "./useDrawAlienBullets";
 import { useDrawScore } from "./useDrawScore";
-import { useDrawMoveController } from "./useDrawMoveController";
 
 export const useDrawGame = () => {
   useClearRect();
@@ -18,7 +17,7 @@ export const useDrawGame = () => {
   useDrawPlayerLife();
   useDrawScore();
 
-  useDrawMoveController();
+  // useDrawMoveController();
 
   useResetCanvas();
 };

@@ -43,15 +43,15 @@ export const useShooting = () => {
       shootingInterval.current = null;
     }
 
-    if (isShooting) {
-      shootingInterval.current = setInterval(() => {
-        const socket = SocketRef.current;
-        if (!socket || !roomId || !socketId) return;
-        if (lifeRef.current <= 0) return;
+    // if (isShooting) {
+    //   shootingInterval.current = setInterval(() => {
+    //     const socket = SocketRef.current;
+    //     if (!socket || !roomId || !socketId) return;
+    //     if (lifeRef.current <= 0) return;
 
-        socket.emit("shot", { roomId, socketId });
-      }, 1000 / 18);
-    }
+    //     socket.emit("shot", { roomId, socketId });
+    //   }, 1000 / 18);
+    // }
 
     return () => {
       if (shootingInterval.current) {

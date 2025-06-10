@@ -19,14 +19,18 @@ export const useClearRect = () => {
     const imgHeight = height; // Assuming background image matches canvas height
 
     // Scroll the background downward
-    offsetYRef.current += 0.3; // scroll speed
+    offsetYRef.current += 1; // scroll speed
     if (offsetYRef.current >= imgHeight) {
       offsetYRef.current = 0;
     }
 
     // Clear the canvas
     ctx.clearRect(0, 0, width, height);
+    offsetYRef.current += 1; // scroll speed
 
+    if (offsetYRef.current >= imgHeight) {
+      offsetYRef.current = 0;
+    }
     // Draw the scrolling background
     ctx.drawImage(spaceImg.el, 0, offsetYRef.current, width, height);
     ctx.drawImage(

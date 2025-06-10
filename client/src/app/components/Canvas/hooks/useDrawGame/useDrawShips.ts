@@ -14,7 +14,7 @@ export const useDrawShips = () => {
     const { players } = gameState;
 
     Object.values(players).forEach((player) => {
-      if (player.id === socketId) return;
+      // if (player.id === socketId) return;
       const { size, x, y } = player;
       if (player.life <= 0) return;
       ctx.drawImage(shipImg.el, x, y, size, size);

@@ -3,15 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { MoveArrayType } from "@/app/types/game/client";
 
 export const usePlayerMove = () => {
-  const {
-    isGameStarted,
-    roomId,
-    socketId,
-    SocketRef,
-    gameState,
-    moveArrayRef,
-    velocityRef,
-  } = useGlobalContext();
+  const { socketId, gameState, moveArrayRef } = useGlobalContext();
 
   const lifeRef = useRef(3);
 
@@ -90,22 +82,22 @@ export const usePlayerMove = () => {
     };
   }, [moveArrayRef]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isGameStarted || !roomId || !socketId) return;
-      if (lifeRef.current <= 0) return;
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (!isGameStarted || !roomId || !socketId) return;
+  //     if (lifeRef.current <= 0) return;
 
-      const socket = SocketRef.current;
-      if (!socket) return;
+  //     const socket = SocketRef.current;
+  //     if (!socket) return;
 
-      socket.emit("move", {
-        roomId,
-        socketId,
-        moveArray: moveArrayRef.current,
-        velocity: velocityRef.current,
-      });
-    }, 1000 / 60);
+  //     socket.emit("move", {
+  //       roomId,
+  //       socketId,
+  //       moveArray: moveArrayRef.current,
+  //       velocity: velocityRef.current,
+  //     });
+  //   }, 1000 / 60);
 
-    return () => clearInterval(interval);
-  }, [isGameStarted, roomId, socketId, SocketRef, moveArrayRef, velocityRef]);
+  //   return () => clearInterval(interval);
+  // }, [isGameStarted, roomId, socketId, SocketRef, moveArrayRef, velocityRef]);
 };

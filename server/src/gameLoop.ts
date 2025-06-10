@@ -17,6 +17,8 @@ import { detectPlayerPlayerCollision } from "./utils/detectPlayerPlayerCollision
 import { detectBulletAlienBulletCollision } from "./utils/detectBulletAlienBulletCollision";
 import { alienSpawner } from "./utils/alienSpawner";
 import { detectAlienAlienCollision } from "./utils/detectAlienAlienCollision";
+import { detectPlayer } from "./utils/detectPlayer";
+import { Bullet } from "./objects/bullet";
 
 export const gameLoop = (
   rooms: Record<string, RoomType>,
@@ -45,6 +47,34 @@ export const gameLoop = (
     for (const player of Object.values(room.players)) {
       player.move(room.canvasSize.width, room.canvasSize.height);
     }
+
+    //! ***
+    const player = detectPlayer(rooms, roomId, socketId);
+    console.log(player);
+    if (player.isShooting) {
+      const now = Date.now();
+
+      if (now - player.lastShotTime >= player.shootCooldown) {
+        player.lastShotTime = now;
+
+        const { size, x, y } = player;
+        const bulletWidth = size / 8;
+        const bulletHeight = bulletWidth * 2;
+
+        const newBullet = new Bullet(
+          socketId,
+          size,
+          bulletWidth,
+          bulletHeight,
+          x + size / 2 - bulletWidth / 2,
+          y
+        );
+
+        room.bullets.push(newBullet);
+      }
+    }
+
+    //! ***
 
     bulletsMove(room);
     aliensMove(room);

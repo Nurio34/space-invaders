@@ -29,12 +29,9 @@ export const useDrawPlayer = () => {
       const moveArray = moveArrayRef.current;
       const velocity = velocityRef.current;
 
-      console.log({ x: xRef.current, y: yRef.current });
       if (!xRef.current || !yRef.current) return;
 
-      // Update position based on current movement input
       if (moveArray.includes("right")) xRef.current += (velocity.x * size) / 8;
-
       if (moveArray.includes("left")) xRef.current -= (velocity.x * size) / 8;
       if (moveArray.includes("down")) yRef.current += (velocity.y * size) / 8;
       if (moveArray.includes("up")) yRef.current -= (velocity.y * size) / 8;

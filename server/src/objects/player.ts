@@ -11,6 +11,9 @@ export class Player {
   x: number;
   y: number;
   score: number;
+  isShooting: boolean;
+  lastShotTime: number;
+  shootCooldown: number;
 
   constructor(
     id: string,
@@ -30,6 +33,9 @@ export class Player {
     this.x = x;
     this.y = y;
     this.score = 0;
+    this.isShooting = false;
+    this.lastShotTime = 0;
+    this.shootCooldown = 100;
   }
 
   move(canvasWidth: number, canvasHeight: number) {
